@@ -1,15 +1,21 @@
 require("dotenv").config();
 
 import express from "express";
+import cors from "cors";
+// const cors = require('cors');
 
 const mongoose = require("mongoose");
 const todosRoutes = require("./routes/todos");
 
+
+
 // express app
 const app = express();
+app.use(cors());
 
 // middleware
 app.use(express.json());
+app.use(cors({ origin: "http://localhost:3000" })); // Aquí configuramos CORS
 
 app.use((req, res, next) => {
   console.log(req.path, req.method);

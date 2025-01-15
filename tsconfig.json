@@ -11,6 +11,11 @@
     "strict": true,
     "resolveJsonModule": true,
     "noEmit": false,
+    "baseUrl": "src/",
+    "paths": {
+      "@/styles/*": ["styles/*"],
+      "@/components/*": ["components/*"]
+    },
 
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,

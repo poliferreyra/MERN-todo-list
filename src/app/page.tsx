@@ -1,8 +1,14 @@
 "use client";
 
-import Home from '../../src/app/frontend/components/Home';
+import Home from "../../src/app/frontend/components/Home";
+
+import Header from "./frontend/components/Header";
 
 export default function Page() {
-  return <Home />;
+  return (
+    <div>
+      <Header />
+      <Home />
+    </div>
+  );
 }
-

@@ -1,16 +1,21 @@
-import {TodoItem} from "../../frontend/components/TodoItems";
+import { TodoItem } from "../../frontend/components/TodoItems";
 import { TodoListProps } from "../../types/todo";
 
-export const TodoList = ({ todos, onToggleComplete, onEdit, onDelete }: TodoListProps) => (
-    <ul>
-      {todos.map((todo) => ( 
-        <TodoItem
-          key={todo.id}
-          todo={todo}  
-          onToggle={() => onToggleComplete(todo.id)}  
-          onEdit={() => onEdit(todo.id)} 
-          onDelete={() => onDelete(todo.id)}  
-        />
-      ))}
-    </ul>
-  );
+export const TodoList = ({
+  todos,
+  onToggleComplete,
+  onEdit,
+  onDelete,
+}: TodoListProps) => (
+  <ul>
+    {todos.map((todo, index) => (
+      <TodoItem
+        key={todo._id || index}
+        todo={todo}
+        onToggle={() => onToggleComplete(todo._id)}
+        onEdit={() => onEdit(todo._id)}
+        onDelete={() => onDelete(todo._id)}
+      />
+    ))}
+  </ul>
+);

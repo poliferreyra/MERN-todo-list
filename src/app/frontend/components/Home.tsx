@@ -1,70 +1,99 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { TodoList } from "./TodoList";
 
-import Container from "../../styles/Container";
-import Title from "../../styles/Title";
-import InputContainer from "../../styles/InputContainer";
-import Input from "../../styles/Input";
-import Button from "../../styles/Button";
+import { Todo } from "../../types/todo";
+import { getTodos } from "../../utils/api";
+
+import Container from "../../styles/todoList/Container";
+import Title from "../../styles/todoList/Title";
+import { InputAddTodo } from "./InputAddTodo";
+import axios from "axios";
 
 export default function Home() {
-  const [todos, setTodos] = useState([
-    { id: "1", task: "Aprender React", completed: false },
-    { id: "2", task: "Explorar Node.js", completed: true },
-    { id: "3", task: "Practicar TypeScript", completed: false },
-    { id: "4", task: "Practicar Ingles", completed: false },
+  const [todos, setTodos] = useState<Todo[]>([]);
 
-  ]);
+  useEffect(() => {
+    const fetchTodos = async () => {
+      try {
+        const allTodos = await getTodos();
+        setTodos(allTodos);
+      } catch (error) {
+        console.error("Failed to fetch todos:", error);
+      }
+    };
 
-  const [newTask, setNewTask] = useState("");
+    fetchTodos();
+  }, []);
 
-  const addTodo = () => {
-    if (!newTask.trim()) return;
-    setTodos([
-      ...todos,
-      { id: crypto.randomUUID(), task: newTask.trim(), completed: false },
-    ]);
-    setNewTask("");
+  // Agregar nueva tarea
+  const addTodo = (newTodo: Todo) => {
+    setTodos((prevTodos) => [...prevTodos, newTodo]);
   };
 
-  const toggleComplete = (id: string) => {
-    setTodos(
-      todos.map((todo) =>
-        todo.id === id ? { ...todo, completed: !todo.completed } : todo
-      )
-    );
-  };
+  // toggle true/false - tarea completa
+  const toggleComplete = async (id: string) => {
+    const todo = todos.find((todo) => todo._id === id);
+    if (!todo) return;
 
-  const deleteTodo = (id: string) => {
-    setTodos(todos.filter((todo) => todo.id !== id));
-  };
+    const updatedCompleted = !todo.completed;
 
-  const editTodo = (id: string) => {
-    const updatedTask = prompt(
-      "Edita tu tarea:",
-      todos.find((todo) => todo.id === id)?.task || ""
-    );
-    if (updatedTask) {
-      setTodos(
-        todos.map((todo) =>
-          todo.id === id ? { ...todo, task: updatedTask } : todo
+    try {
+      await axios.put(`http://localhost:4000/api/todos/${id}`, {
+        completed: updatedCompleted,
+      });
+
+      setTodos((prevTodos) =>
+        prevTodos.map((todo) =>
+          todo._id === id ? { ...todo, completed: updatedCompleted } : todo
         )
       );
+    } catch (error) {
+      console.error("Error updating todo:", error);
+    }
+  };
+  
+  // borrar tarea
+  const deleteTodo = async (id: string) => {
+    console.log("Deleting task with ID:", id);
+    try {
+      await axios.delete(`http://localhost:4000/api/todos/${id}`);
+      setTodos(todos.filter((todo) => todo._id !== id));
+    } catch (error) {
+      console.error("Error deleting todo:", error);
+    }
+  };
+
+  // editar tarea
+  // TODO para mejorar la UI - renderizar un modal para el edit
+  const editTodo = async (id: string) => {
+    const updatedTask = prompt(
+      "Edita tu tarea:",
+      todos.find((todo) => todo._id === id)?.task || ""
+    );
+    if (!updatedTask) return;
+
+    try {
+      await axios.put(`http://localhost:4000/api/todos/${id}`, {
+        task: updatedTask,
+      });
+
+      setTodos((prevTodos) =>
+        prevTodos.map((todo) =>
+          todo._id === id ? { ...todo, task: updatedTask } : todo
+        )
+      );
+    } catch (error) {
+      console.error("Error editing todo:", error);
     }
   };
 
   return (
     <Container>
-      <Title>Todo List</Title>
-      <InputContainer>
-        <Input
-          type="text"
-          placeholder="Nueva tarea..."
-          value={newTask}
-          onChange={(e) => setNewTask(e.target.value)}
-        />
-        <Button onClick={addTodo}>Agregar</Button>
-      </InputContainer>
+      <Title>Welcome my TODO List</Title>
+
+      {/* add new task */}
+      <InputAddTodo onAddTodo={addTodo} />
+
       <TodoList
         todos={todos}
         onToggleComplete={toggleComplete}

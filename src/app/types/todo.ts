@@ -1,6 +1,6 @@
 // Definición de la interfaz 'Todo'
-interface Todo {
-    id: string;
+export interface Todo {
+    _id: string;
     task: string;
     completed: boolean;
   }
@@ -19,4 +19,8 @@ interface Todo {
     onToggleComplete: (id: string) => void;
     onEdit: (id: string) => void;
     onDelete: (id: string) => void;
+  }
+
+ export interface InputAddTodoProps {
+    onAddTodo: (newTodo: Todo) => void; // Prop para agregar la tarea
   }

@@ -1,8 +1,8 @@
 
 import { FaCheck, FaEdit, FaTrash } from "react-icons/fa";
 import { TodoItemProps } from "../../types/todo";
-import TodoItemWrapper from "../../styles/TodoItemWrapper";
-import TodoText from "../../styles/TodoText";
+import TodoItemWrapper from "../../styles/todoList/TodoItemWrapper";
+import TodoText from "../../styles/todoList/TodoText";
 
 export const TodoItem = ({ todo, onToggle, onEdit, onDelete }: TodoItemProps) => (
   <TodoItemWrapper $completed={todo.completed}>
