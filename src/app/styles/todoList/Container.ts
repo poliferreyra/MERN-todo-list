@@ -2,12 +2,14 @@ import styled from "styled-components";
 
 const Container = styled.div`
   width: 100%;
-  max-width: 600px;
-  margin: 0 auto;
+  max-width: 400px;
+  margin: 0 30px;
   padding: 20px;
-  background-color: rgb(204, 120, 221);
+  color: #333333;
+  background-color: #d3bdfe;
+  border: 1px solid #fae06f;
+  box-shadow: rgba(0, 0, 0, 0.1);
   border-radius: 10px;
-  /* box-shadow: 0 4px 8px rgba(110, 48, 48, 0.1); */
 `;
 
 export default Container;

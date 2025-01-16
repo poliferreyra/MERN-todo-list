@@ -89,7 +89,7 @@ export default function Home() {
 
   return (
     <Container>
-      <Title>Welcome my TODO List</Title>
+      <Title>My Todo List</Title>
 
       {/* add new task */}
       <InputAddTodo onAddTodo={addTodo} />

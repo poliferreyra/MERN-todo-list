@@ -6,24 +6,26 @@ import Button from "../../styles/todoList/Button";
 import axios from "axios";
 
 interface InputAddTodoProps {
-  onAddTodo: (newTodo: Todo) => void; 
+  onAddTodo: (newTodo: Todo) => void;
 }
 
+type TodoInput = Pick<Todo, "task" | "completed">;
 
 export const InputAddTodo: React.FC<InputAddTodoProps> = ({ onAddTodo }) => {
   const [task, setTask] = useState("");
   const [completed, setCompleted] = useState(false);
 
-  // TODO ver error de tipado 
   const addTodo = async () => {
-    const newTodo: Todo = { task, completed };
+    const newTodo: TodoInput = { task, completed };
 
     try {
       // Realiza la solicitud POST para agregar la tarea
       await axios.post("http://localhost:4000/api/todos", newTodo);
-      
-      // Pasa la nueva tarea al componente padre (Home)
-      onAddTodo(newTodo);
+
+      // Crea un objeto con un _id temporal antes de pasarlo al padre
+      const tempTodo: Todo = { ...newTodo, _id: "" };
+
+      onAddTodo(tempTodo);
 
       setTask("");
       setCompleted(false);
@@ -37,7 +39,7 @@ export const InputAddTodo: React.FC<InputAddTodoProps> = ({ onAddTodo }) => {
     <InputContainer>
       <Input
         type="text"
-        placeholder="Nueva tarea..."
+        placeholder="Add new Task..."
         value={task}
         onChange={(e) => setTask(e.target.value)}
       />

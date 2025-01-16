@@ -8,7 +8,7 @@ const TodoItem = styled.li<{ $completed: boolean }>`
   border: px solid #ddd;
   border-radius: 5px;
   margin-bottom: 10px;
-  background-color: ${(props) => (props.$completed ? "#d4edda" : "white")};
+  background-color: ${(props) => (props.$completed ? "#ffffff " : "#ffffff")};
 `;
 
 export default TodoItem;

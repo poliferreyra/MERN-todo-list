@@ -1,15 +1,18 @@
 import styled from "styled-components";
 
 const Button = styled.button`
-  padding: 10px 15px;
-  background-color: #0070f3;
-  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  padding: 5px 10px;
+  background-color: #ffda68;
   border: none;
   border-radius: 5px;
   cursor: pointer;
 
   &:hover {
-    background-color: #005bb5;
+    background-color:  #ade367
   }
 `;
 
