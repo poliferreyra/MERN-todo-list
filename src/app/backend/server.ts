@@ -1,48 +1,48 @@
+/* eslint-disable @typescript-eslint/no-require-imports */
+
 require("dotenv").config();
 
 import express from "express";
 import cors from "cors";
+import * as fs from "fs";
 
+const jwt = require("jsonwebtoken");
 const mongoose = require("mongoose");
 const todosRoutes = require("./routes/todos");
 
-const { auth, requiresAuth } = require("express-openid-connect");
-
 // express app
 const app = express();
-app.use(cors());
-
-const config = {
-  authRequired: false,
-  auth0Logout: true,
-  baseURL: process.env.BASE_URL,
-  clientID: process.env.CLIENT_ID,
-  issuerBaseURL: process.env.ISSUER_BASE_URL,
-  secret: process.env.SECRET,
-};
+app.use(
+  cors({
+    origin: process.env.FRONTEND_URL,
+    credentials: true,
+  })
+);
 
 // middleware
 app.use(express.json());
 
-app.use(
-  cors({
-    origin: process.env.FRONTEND_URL, // Permite solicitudes solo desde tu frontend
-    credentials: true, // Si usas cookies/sesiones en Auth0
-  })
-);
-
-app.use(auth(config));
-
-app.use((req, res, next) => {
-  console.log(req.path, req.method);
-  next();
-});
-
 // routes
-app.use("/api/todos", requiresAuth(), todosRoutes);
-app.get("/", (req, res) => {
-  res.send((req as any).oidc.isAuthenticated() ? "Logged in" : "Logged out");
-});
+app.use(
+  "/api/todos",
+  async (req, res, next) => {
+    const token = req.headers.authorization?.replace("Bearer ", "");
+
+    try {
+      const location = process.env.AUTH0_PUBLIC_KEY_LOCATION as string;
+      const cert = fs.readFileSync(location);
+      const decoded = await jwt.verify(token, cert);
+      res.locals.email = decoded.email;
+
+      console.log("Token validated. Go ahead!");
+      next();
+    } catch (e) {
+      console.log(e);
+      res.sendStatus(401);
+    }
+  },
+  todosRoutes
+);
 
 // connect to db
 mongoose

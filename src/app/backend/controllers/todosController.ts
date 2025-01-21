@@ -1,11 +1,15 @@
-const Todos = require("../models/todosModel");
-import { Request, Response } from "express";
+/* eslint-disable @typescript-eslint/no-require-imports */
 
-const mongoose = require("mongoose");
+// TODO ver este tema de las importaciones - probe de agregar un .eslintrc - con configuraciones... pero igual no se arregla 
+const Todos = require("../models/todosModel");
+
+import { Request, Response } from "express";
 
 // get all todos
 const getTodos = async (req: Request, res: Response): Promise<void> => {
-  const getAllTodos = await Todos.find({}).sort({ createdAt: -1 });
+  const getAllTodos = await Todos.find({ email: res.locals.email }).sort({
+    createdAt: -1,
+  });
   res.status(200).json(getAllTodos);
 };
 
@@ -38,6 +42,7 @@ const createTodo = async (req: Request, res: Response): Promise<void> => {
     const newtask = await Todos.create({
       task,
       completed,
+      email: res.locals.email,
     });
     res.status(200).json(newtask);
 
@@ -81,9 +86,9 @@ const updateTaskID = async (
   //     return res.status(404).json({ error: "No such todo ID" });
   //   }
 
-  const updateTask = await Todos.findOneAndUpdate(  { _id: id }, 
-    req.body,    
-    { new: true } );
+  const updateTask = await Todos.findOneAndUpdate({ _id: id }, req.body, {
+    new: true,
+  });
 
   if (!updateTask) {
     return res.status(400).json({ error: "No such todo ID" });

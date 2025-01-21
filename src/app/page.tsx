@@ -1,39 +1,21 @@
-"use client";
-// TODO chequear porque hay delay en el renderizado
+import { getSession } from "@auth0/nextjs-auth0";
 
-import { Provider, useSelector } from "react-redux";
-import { RootState } from "../app/redux/store/store";
-import store from "../app/redux/store/store";
+import Main from "./frontend/components/Main";
 import Header from "./frontend/components/Header";
-import styled from "styled-components";
-import Home from "./frontend/components/Home";
-import LoginForm from "./components/forms/LoginForm";
-export const Container = styled.div`
+import { LoginForm } from "./frontend/components/LoginForm";
 
 
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  width: 100%;
-  flex-direction: column;
-`;
 
-function AppContent() {
-  const { isAuthenticated } = useSelector((state: RootState) => state.user); 
+export default async function Home() {
+  const session = await getSession();
+  const token = session?.accessToken;
 
   return (
-    <Container>
-      {isAuthenticated ? <Home /> : <LoginForm />}
-    </Container>
-  );
-}
-
-export default function Page() {
-  return (
-    <Provider store={store}>
+    <div>
       <Header />
-      <AppContent />
-    </Provider>
+    
+      {token ? <Main token={token} /> : <LoginForm/>}
+
+    </div>
   );
 }

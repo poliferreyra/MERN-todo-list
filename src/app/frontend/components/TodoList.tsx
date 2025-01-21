@@ -13,7 +13,7 @@ export const TodoList = ({
         key={todo._id || index}
         todo={todo}
         onToggle={() => onToggleComplete(todo._id)}
-        onEdit={() => onEdit(todo._id)}
+        onEdit={() => onEdit(todo._id, todo.task)}
         onDelete={() => onDelete(todo._id)}
       />
     ))}

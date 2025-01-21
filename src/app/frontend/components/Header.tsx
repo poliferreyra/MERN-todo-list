@@ -1,60 +1,26 @@
-import styled from "styled-components";
+"use client";
+
 import { HeaderContainer } from "app/styles/header/HeaderContainer";
-import { Nav } from "app/styles/header/Nav";
-import { useSelector, useDispatch } from "react-redux";
-import { RootState } from "app/redux/store/store";
-import { logout } from "app/redux/store/userSlice";
+
+import { useUser } from "@auth0/nextjs-auth0/client";
 import { FaUserCircle } from "react-icons/fa";
-
-// Logo
-export const Logo = styled.div`
-  font-size: 24px;
-  font-weight: bold;
-  margin-bottom: 10px;
-`;
-
-// Estilo para el saludo
-const Greeting = styled.div`
-  font-size: 16px;
-  font-weight: bold;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 20px;
-
-  span {
-    font-size: 14px;
-    color: gray;
-  }
-`;
+import { Greeting } from "app/styles/header/Greeting";
+import { StyledLink } from "app/styles/header/StyledLink";
 
 const Header: React.FC = () => {
-  const dispatch = useDispatch();
-  const { isAuthenticated, email } = useSelector(
-    (state: RootState) => state.user
-  );
-
-  const handleLogout = () => {
-    if (confirm("¿Estás seguro de que deseas cerrar sesión?")) {
-      dispatch(logout());
-    }
-  };
-
+  const { user } = useUser();
   return (
     <HeaderContainer>
-      <Logo>MyLogo</Logo>
-      <Nav>
-        {isAuthenticated && (
-          <Greeting>
-            <div>Hola, {email?.split("@")[0]}!</div>
+      {user && (
+        <Greeting>
+          <h4>Welcome! {user.name}</h4>
 
-            {/* Botón de logout */}
-            <div onClick={handleLogout}>
-              <FaUserCircle size={30} />
-            </div>
-          </Greeting>
-        )}
-      </Nav>
+          <StyledLink href="/api/auth/logout">
+            Logout
+            <FaUserCircle size={30} />
+          </StyledLink>
+        </Greeting>
+      )}
     </HeaderContainer>
   );
 };
