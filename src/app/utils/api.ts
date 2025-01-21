@@ -24,7 +24,12 @@ export const getTodos = async () => {
 // add todo
 export const addTodo = async (todo: TodoInput) => {
   try {
-    await axios.post("http://localhost:4000/api/todos", todo, requestConfig);
+    const response = await axios.post(
+      "http://localhost:4000/api/todos",
+      todo,
+      requestConfig
+    );
+    return response.data;
   } catch (error) {
     console.error("Error to add news task", error);
   }

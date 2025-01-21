@@ -17,7 +17,7 @@ export interface TodoItemProps {
 export interface TodoListProps {
   todos: Todo[];
   onToggleComplete: (id: string) => void;
-  onEdit: (id: string) => void;
+  onEdit: (id: string, task: string) => void;
   onDelete: (id: string) => void;
 }
 

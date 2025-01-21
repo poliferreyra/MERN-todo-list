@@ -34,7 +34,6 @@ app.use(
       const decoded = await jwt.verify(token, cert);
       res.locals.email = decoded.email;
 
-      console.log("Token validated. Go ahead!");
       next();
     } catch (e) {
       console.log(e);

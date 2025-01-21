@@ -6,6 +6,7 @@ const {
   getTodoByID,
   deleteTodoByID,
   updateTaskID,
+// eslint-disable-next-line @typescript-eslint/no-require-imports
 } = require("../controllers/todosController");
 
 const router = express.Router();

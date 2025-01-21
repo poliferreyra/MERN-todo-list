@@ -8,20 +8,21 @@ import { addTodo } from "app/utils/api";
 import { addNewTodo } from "app/redux/store/todoSlice";
 import { useDispatch } from "react-redux";
 
-
 export type TodoInput = Pick<Todo, "task" | "completed">;
 
 export const InputAddTodo = () => {
   const dispatch = useDispatch();
   const [task, setTask] = useState("");
-  const [completed, setCompleted] = useState(false);
 
   // add task
-  const handleAddTodo = () => {
-    const newTodo: TodoInput = { task, completed };
-    dispatch(addNewTodo(newTodo));
-
-    addTodo(newTodo);
+  const handleAddTodo = async () => {
+    try {
+      const newTodo: TodoInput = { task, completed: false };
+      const dbNewTodo = await addTodo(newTodo);
+      dispatch(addNewTodo(dbNewTodo));
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (

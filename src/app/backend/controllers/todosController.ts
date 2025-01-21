@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-require-imports */
 
-// TODO ver este tema de las importaciones - probe de agregar un .eslintrc - con configuraciones... pero igual no se arregla 
+// TODO ver este tema de las importaciones - probe de agregar un .eslintrc - con configuraciones... pero igual no se arregla
 const Todos = require("../models/todosModel");
 
 import { Request, Response } from "express";
@@ -37,12 +37,14 @@ const getTodoByID = async (
 // create new todos
 const createTodo = async (req: Request, res: Response): Promise<void> => {
   const { task, completed } = req.body;
+  const email = res.locals.email;
+
   // add doc to db
   try {
     const newtask = await Todos.create({
       task,
       completed,
-      email: res.locals.email,
+      email,
     });
     res.status(200).json(newtask);
 
