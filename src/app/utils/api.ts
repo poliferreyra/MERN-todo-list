@@ -1,5 +1,4 @@
 import { TodoInput } from "app/frontend/components/InputAddTodo";
-// import { Todo } from "app/types/todo";
 import axios, { AxiosRequestConfig } from "axios";
 
 let requestConfig: AxiosRequestConfig;

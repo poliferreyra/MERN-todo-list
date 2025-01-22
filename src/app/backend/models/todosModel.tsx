@@ -5,11 +5,11 @@ const todoSchema: Schema = new Schema(
   {
     task: {
       type: String,
-      required: true, // El título es obligatorio
+      required: true, 
     },
     completed: {
       type: Boolean,
-      default: false, // Los todos empiezan como no completados
+      default: false, 
     },
     email : {
       type: String,

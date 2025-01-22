@@ -1,5 +1,5 @@
+{  "compilerOptions": 
 {
-  "compilerOptions": {
     "target": "esnext",
     "module": "commonjs",
     "jsx": "preserve",
@@ -12,6 +12,8 @@
     "resolveJsonModule": true,
     "noEmit": false,
     "baseUrl": "src/",
+    "types": ["reflect-metadata", "jest"],
+    "typeRoots": ["./types", "./node_modules/@types"],
     "paths": {
       "@/styles/*": ["styles/*"],
       "@/components/*": ["components/*"]
@@ -30,7 +32,7 @@
 
   "include": [
     "src/**/*",
-    "src/app/backend/test/**/*", // Asegúrate de que las pruebas estén incluidas
+    "src/app/backend/test/**/*",
     ".next/types/**/*.ts"
   ],
   "exclude": ["node_modules"]

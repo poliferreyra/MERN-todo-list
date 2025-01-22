@@ -55,3 +55,5 @@ mongoose
   .catch((error: string) => {
     console.log(error);
   });
+
+  export default app;

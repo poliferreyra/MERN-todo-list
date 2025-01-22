@@ -1,9 +1,8 @@
 /* eslint-disable @typescript-eslint/no-require-imports */
-
-// TODO ver este tema de las importaciones - probe de agregar un .eslintrc - con configuraciones... pero igual no se arregla
 const Todos = require("../models/todosModel");
 
 import { Request, Response } from "express";
+import mongoose from "mongoose";
 
 // get all todos
 const getTodos = async (req: Request, res: Response): Promise<void> => {
@@ -20,11 +19,9 @@ const getTodoByID = async (
 ): Promise<Response | void> => {
   const { id } = req.params;
 
-  //   //TODO chequear porque aca tampoco me muestra el error - TypeError: Cannot read properties of undefined (reading 'isValid')-
-  // lo comento porque con esto no estaria funcionando el find en postman
-  //   if (!mongoose.Types.ObjectID.isValid(id)) {
-  //     return res.status(404).json({ error: "No such todo ID" });
-  //   }
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    return res.status(404).json({ error: "No such todo ID" });
+  }
 
   const taskID = await Todos.findById(id);
 
@@ -47,8 +44,6 @@ const createTodo = async (req: Request, res: Response): Promise<void> => {
       email,
     });
     res.status(200).json(newtask);
-
-    // TODO ver como se muestra el error porque en postman me me muestra el error en si sino un html
   } catch (error) {
     res.status(400).json({ error: (error as Error).message });
   }
@@ -61,11 +56,9 @@ const deleteTodoByID = async (
 ): Promise<Response | void> => {
   const { id } = req.params;
 
-  //   //TODO chequear porque aca tampoco me muestra el error - TypeError: Cannot read properties of undefined (reading 'isValid')-
-  // lo comento porque con esto no estaria funcionando el find en postman
-  //   if (!mongoose.Types.ObjectID.isValid(id)) {
-  //     return res.status(404).json({ error: "No such todo ID" });
-  //   }
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    return res.status(404).json({ error: "No such todo ID" });
+  }
 
   const deleteTaskID = await Todos.findOneAndDelete({ _id: id });
 
@@ -82,11 +75,9 @@ const updateTaskID = async (
 ): Promise<Response | void> => {
   const { id } = req.params;
 
-  //   //TODO chequear porque aca tampoco me muestra el error - TypeError: Cannot read properties of undefined (reading 'isValid')-
-  // lo comento porque con esto no estaria funcionando el find en postman
-  //   if (!mongoose.Types.ObjectID.isValid(id)) {
-  //     return res.status(404).json({ error: "No such todo ID" });
-  //   }
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    return res.status(404).json({ error: "No such todo ID" });
+  }
 
   const updateTask = await Todos.findOneAndUpdate({ _id: id }, req.body, {
     new: true,

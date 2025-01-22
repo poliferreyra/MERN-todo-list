@@ -1,6 +1,5 @@
 import styled from "styled-components";
 
-// Estilo para el saludo
 export const Greeting = styled.div`
   font-size: 16px;
   font-weight: bold;
