@@ -3,13 +3,13 @@ import { useEffect } from "react";
 
 // redux
 import { useSelector, useDispatch } from "react-redux";
-import { RootState } from "../../redux/store/store";
+import { RootState } from "../redux/store/store";
 import {
   setTodos,
   toggleTodo,
   editExistingTodo,
   deleteExistingTodo,
-} from "../../redux/store/todoSlice";
+} from "../redux/store/todoSlice";
 
 // api
 import {
@@ -18,16 +18,19 @@ import {
   getTodos,
   setRequestConfig,
   toggleComplete,
-} from "app/utils/api";
+} from "app/backend/utils/api";
 
 // Styles
-import { MainContainer } from "app/styles/todoList/MainContainer";
-import Container from "app/styles/todoList/Container";
-import Title from "app/styles/todoList/Title";
+import { MainContainer } from "../styles/todolist/MainContainer";
+
+import Container from "../styles/todolist/Container";
+import Title from "../styles/todolist/Title";
 
 // components
-import { TodoList } from "./TodoList";
 import { InputAddTodo } from "./InputAddTodo";
+import { TodoList } from "./TodoList";
+
+
 
 export default function Main(tokenParameter: { token: string }) {
   const dispatch = useDispatch();

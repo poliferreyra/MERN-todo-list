@@ -29,13 +29,13 @@ beforeAll(async () => {
 it("should create a task and return it", async () => {
   const response = await request(app)
     .post("/api/todos")
-    .send({ task: "Testing add new task", completed: false })
+    .send({ task: "Test-add new task", completed: false })
     .expect(200);
 
   expect(response.body).toHaveProperty("_id");
-  expect(response.body.task).toBe("Testing add new task");
+  expect(response.body.task).toBe("Test-add new task");
   expect(response.body.completed).toBe(false);
 
-  const task = await Todos.findOne({ task: "Testing add new task" });
+  const task = await Todos.findOne({ task: "Test-add new task" });
   expect(task).not.toBeNull();
 });

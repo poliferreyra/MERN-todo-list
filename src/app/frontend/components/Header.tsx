@@ -1,11 +1,11 @@
 "use client";
 
-import { HeaderContainer } from "app/styles/header/HeaderContainer";
-
 import { useUser } from "@auth0/nextjs-auth0/client";
 import { FaUserCircle } from "react-icons/fa";
-import { Greeting } from "app/styles/header/Greeting";
-import { StyledLink } from "app/styles/header/StyledLink";
+import { HeaderContainer } from "../styles/header/HeaderContainer";
+import { Greeting } from "../styles/header/Greeting";
+import { StyledLink } from "../styles/header/StyledLink";
+
 
 const Header: React.FC = () => {
   const { user } = useUser();

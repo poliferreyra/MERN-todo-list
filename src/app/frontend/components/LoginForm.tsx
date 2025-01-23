@@ -3,10 +3,11 @@
 import React from "react";
 
 import Image from "next/image";
-import Button from "app/styles/todoList/Button";
-import { StyledLink } from "app/styles/header/StyledLink";
-import { MainContainer } from "app/styles/todoList/MainContainer";
-import { ImgLoginContainer } from "app/styles/todoList/ImgLoginContainer";
+
+import Button from "../styles/todolist/Button";
+import { MainContainer } from "../styles/todolist/MainContainer";
+import { ImgLoginContainer } from "../styles/todolist/ImgLoginContainer";
+import { StyledLink } from "../styles/header/StyledLink";
 
 
 

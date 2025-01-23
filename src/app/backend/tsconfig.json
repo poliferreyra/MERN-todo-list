@@ -1,5 +1,5 @@
-{  "compilerOptions": 
 {
+  "compilerOptions": {
     "target": "esnext",
     "module": "commonjs",
     "jsx": "preserve",
@@ -12,13 +12,12 @@
     "resolveJsonModule": true,
     "noEmit": false,
     "baseUrl": "src/",
-    "types": ["reflect-metadata", "jest"],
+    "types": ["jest"],
     "typeRoots": ["./types", "./node_modules/@types"],
     "paths": {
       "@/styles/*": ["styles/*"],
       "@/components/*": ["components/*"]
     },
-
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "incremental": true,
@@ -29,11 +28,5 @@
       }
     ]
   },
-
-  "include": [
-    "src/**/*",
-    "src/app/backend/test/**/*",
-    ".next/types/**/*.ts"
-  ],
   "exclude": ["node_modules"]
 }

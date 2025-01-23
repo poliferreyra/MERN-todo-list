@@ -1,11 +1,12 @@
 import React, { useState } from "react";
-import { Todo } from "app/types/todo";
-import InputContainer from "../../styles/todoList/InputContainer";
-import Input from "../../styles/todoList/Input";
-import Button from "../../styles/todoList/Button";
 
-import { addTodo } from "app/utils/api";
-import { addNewTodo } from "app/redux/store/todoSlice";
+import { addTodo } from "app/backend/utils/api";
+import { addNewTodo } from "app/frontend/redux/store/todoSlice";
+
+import { Todo } from "../types/todo";
+import InputContainer from "../styles/todolist/InputContainer";
+import Input from "../styles/todolist/Input";
+import Button from "../styles/todolist/Button";
 import { useDispatch } from "react-redux";
 
 export type TodoInput = Pick<Todo, "task" | "completed">;

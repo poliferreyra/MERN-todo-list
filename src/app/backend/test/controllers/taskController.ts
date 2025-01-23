@@ -1,7 +1,8 @@
 // eslint-disable-next-line @typescript-eslint/no-require-imports
 const Task = require("../models/Task");
 
-exports.createTask = async (req, res) => {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+exports.createTask = async (req: any, res: any) => {
   try {
     const { title } = req.body;
     const task = await Task.create({ title });
