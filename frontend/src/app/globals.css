@@ -1,0 +1,35 @@
+/* global.css */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Verdana, Tahoma, sans-serif;
+  color: #355fb5;
+  background-image: url("/bgImg.png");
+  background-size: cover; 
+  background-repeat: no-repeat;
+  background-position: center;
+  min-height: 100vh;
+  background-attachment: fixed;
+
+  /* Tamaño base de la fuente */
+  font-size: 16px; 
+
+  /* Media query para móviles */
+  @media (max-width: 600px) {
+    font-size: 12px;
+  }
+
+  /* Media query para tabletas */
+  @media (max-width: 1024px) {
+    font-size: 15px; 
+  }
+
+  /* Media query para escritorio */
+  @media (min-width: 1025px) {
+    font-size: 16px; 
+  }
+}
