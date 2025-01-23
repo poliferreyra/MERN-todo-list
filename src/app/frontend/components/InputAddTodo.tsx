@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import { addTodo } from "app/backend/utils/api";
+
 import { addNewTodo } from "app/frontend/redux/store/todoSlice";
 
 import { Todo } from "../types/todo";
@@ -8,6 +8,7 @@ import InputContainer from "../styles/todolist/InputContainer";
 import Input from "../styles/todolist/Input";
 import Button from "../styles/todolist/Button";
 import { useDispatch } from "react-redux";
+import { addTodo } from "../utils/api";
 
 export type TodoInput = Pick<Todo, "task" | "completed">;
 

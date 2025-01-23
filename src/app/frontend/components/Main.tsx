@@ -18,7 +18,7 @@ import {
   getTodos,
   setRequestConfig,
   toggleComplete,
-} from "app/backend/utils/api";
+} from "../utils/api";
 
 // Styles
 import { MainContainer } from "../styles/todolist/MainContainer";
