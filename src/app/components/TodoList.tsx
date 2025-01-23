@@ -1,6 +1,5 @@
-import { TodoItem } from "../../frontend/components/TodoItems";
+import { TodoItem } from "./TodoItems";
 import { TodoListProps } from "../types/todo";
-
 
 export const TodoList = ({
   todos,

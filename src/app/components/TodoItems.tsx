@@ -4,7 +4,6 @@ import { TodoItemProps } from "../types/todo";
 import TodoItemWrapper from "../styles/todolist/TodoItemWrapper";
 import TodoText from "../styles/todolist/TodoText";
 
-
 export const TodoItem = ({
   todo,
   onToggle,

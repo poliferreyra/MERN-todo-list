@@ -4,7 +4,6 @@
   "type": "commonjs",
   "main": "backend/server.ts",
   "scripts": {
-    "dev:backend": "nodemon --exec ts-node backend/server.ts",
     "dev:frontend": "next dev",
     "build:backend": "tsc server.ts",
     "build:frontend": "next build",

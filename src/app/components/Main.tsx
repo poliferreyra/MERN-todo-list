@@ -30,8 +30,6 @@ import Title from "../styles/todolist/Title";
 import { InputAddTodo } from "./InputAddTodo";
 import { TodoList } from "./TodoList";
 
-
-
 export default function Main(tokenParameter: { token: string }) {
   const dispatch = useDispatch();
   const { todos } = useSelector((state: RootState) => state.todos);

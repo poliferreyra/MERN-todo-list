@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 
-
-import { addNewTodo } from "app/frontend/redux/store/todoSlice";
+import { addNewTodo } from "app/redux/store/todoSlice";
 
 import { Todo } from "../types/todo";
 import InputContainer from "../styles/todolist/InputContainer";

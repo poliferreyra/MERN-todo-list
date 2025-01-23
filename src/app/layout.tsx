@@ -4,7 +4,7 @@ import { UserProvider } from "@auth0/nextjs-auth0/client";
 
 
 import "./globals.css";
-import { ReduxProvider } from "./frontend/redux/reduxProvider";
+import { ReduxProvider } from "./redux/reduxProvider";
 
 const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin"] });
 

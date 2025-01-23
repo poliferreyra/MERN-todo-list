@@ -1,10 +1,8 @@
 import { getSession } from "@auth0/nextjs-auth0";
 
-import Main from "./frontend/components/Main";
-import Header from "./frontend/components/Header";
-import { LoginForm } from "./frontend/components/LoginForm";
-
-
+import Main from "./components/Main";
+import Header from "./components/Header";
+import { LoginForm } from "./components/LoginForm";
 
 export default async function Home() {
   const session = await getSession();
@@ -13,9 +11,8 @@ export default async function Home() {
   return (
     <div>
       <Header />
-    
-      {token ? <Main token={token} /> : <LoginForm/>}
 
+      {token ? <Main token={token} /> : <LoginForm />}
     </div>
   );
 }

@@ -6,7 +6,6 @@ import { HeaderContainer } from "../styles/header/HeaderContainer";
 import { Greeting } from "../styles/header/Greeting";
 import { StyledLink } from "../styles/header/StyledLink";
 
-
 const Header: React.FC = () => {
   const { user } = useUser();
   return (
