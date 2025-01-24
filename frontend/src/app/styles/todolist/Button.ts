@@ -16,7 +16,7 @@ const Button = styled.button`
   &:hover {
     background-color: #ade367;
   }
-/* Estilos responsivos */
+/* Responsives Styles */
 @media (max-width: 1440px) {
     padding: 15px 20px;
     font-size: 20px; 

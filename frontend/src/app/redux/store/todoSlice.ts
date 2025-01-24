@@ -14,7 +14,7 @@ const todosSlice = createSlice({
   initialState,
   reducers: {
     setTodos: (state, action: PayloadAction<Todo[]>) => {
-      state.todos = action.payload; // Guardar todos en el estado
+      state.todos = action.payload; // Save all in the state
     },
 
     addNewTodo: (state, action: PayloadAction<Todo>) => {
@@ -32,7 +32,7 @@ const todosSlice = createSlice({
     ) => {
       const todo = state.todos.find((todo) => todo._id === action.payload.id);
       if (todo) {
-        todo.task = action.payload.task; // Actualizar el texto de la tarea
+        todo.task = action.payload.task; // Update the task text
       }
     },
     deleteExistingTodo: (state, action: PayloadAction<string>) => {

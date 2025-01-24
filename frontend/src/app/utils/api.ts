@@ -49,8 +49,8 @@ export const toggleComplete = async (id: string, completed: boolean) => {
   }
 };
 
-// editar tarea
-// TODO para mejorar la UI - renderizar un modal para el edit
+// edit task
+// TODO Improve the UI - render a modal for editing
 export const editTodo = async (id: string, task: string) => {
   try {
     await axios.put(
@@ -65,7 +65,7 @@ export const editTodo = async (id: string, task: string) => {
   }
 };
 
-// borrar tarea
+// delete task
 export const deleteTodo = async (id: string) => {
   try {
     await axios.delete(`http://localhost:4000/api/todos/${id}`, requestConfig);

@@ -15,20 +15,20 @@ body {
   min-height: 100vh;
   background-attachment: fixed;
 
-  /* Tamaño base de la fuente */
+  /* Font size */
   font-size: 16px; 
 
-  /* Media query para móviles */
+  /* Mobile Media query */
   @media (max-width: 600px) {
     font-size: 12px;
   }
 
-  /* Media query para tabletas */
+  /* Tablet Media query */
   @media (max-width: 1024px) {
     font-size: 15px; 
   }
 
-  /* Media query para escritorio */
+  /* Desktop Media query */
   @media (min-width: 1025px) {
     font-size: 16px; 
   }

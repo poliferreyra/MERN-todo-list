@@ -15,7 +15,7 @@ export const LoginForm = () => {
       <ImgLoginContainer>
         <Image
           src="/loginImg.png"
-          alt="Picture of the author"
+          alt="Box login image"
           fill
           priority
           sizes="(max-width: 768px) 150px, 300px"

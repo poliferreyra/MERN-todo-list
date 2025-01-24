@@ -6,7 +6,7 @@ const config: Config.InitialOptions = {
       displayName: "backend",
       preset: "ts-jest",
       testMatch: ["<rootDir>/test/*.test.ts"],
-      testEnvironment: "node", // Entorno para backend
+      testEnvironment: "node", // Environment for backend
       transform: {
         "^.+\\.(ts|tsx)$": "ts-jest",
       },

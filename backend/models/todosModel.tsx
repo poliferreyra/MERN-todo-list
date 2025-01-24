@@ -1,6 +1,6 @@
 import mongoose, { Schema } from "mongoose";
 
-// Crea el esquema de Mongoose
+// Create Mongoose schema
 const todoSchema: Schema = new Schema(
   {
     task: {
