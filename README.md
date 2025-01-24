@@ -114,7 +114,16 @@ To use Auth0 in your project, follow these steps to generate the necessary keys 
    
    Copy these values as you’ll need them in the next step.
 
-### Step 4: Set up environment variables
+### Step 4: Configure Auth0 Public Key
+
+To configure the Auth0 public key for verifying RS256 tokens, follow these steps:
+
+- Navigate to the Applications section and select the application you are working with.
+- Go to the Settings tab and scroll down to find the Signing Keys section.
+- Locate the public key, which is used to verify the JWT signature. Download or copy the public key.
+- Save the key in a file named **public.pem** and place it in your project root directory or any secure location.
+
+### Step 5: Set up environment variables
 
 Use the provided example files (`.env.example` y `.env.local.example`) as a base to configure your environment variables.
 
@@ -124,8 +133,9 @@ Use the provided example files (`.env.example` y `.env.local.example`) as a base
 .env
 
 PORT=4000
+FRONTEND_URL=http://localhost:3000
 MONGO_URI=mongodb://localhost:27017/todo
-JWT_SECRET=your_jwt_secret
+AUTH0_PUBLIC_KEY_LOCATION=public.pem
 
 **Frontend:**
 
